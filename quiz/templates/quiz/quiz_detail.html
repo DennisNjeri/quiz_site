@@ -1,0 +1,40 @@
+{% extends 'base1.html' %}
+
+{% load i18n %}
+
+{% block title %}
+	{{ quiz.title }}
+{% endblock %}
+
+{% block hi %}
+	[ quiz_detail.html ]
+{% endblock %}
+
+{% block content %}
+
+	<h2> {{ quiz.title }} </h2>
+
+	<h3> {% trans "Category" %}: {{ quiz.category }} </h3>
+
+	{% if quiz.single_attempt %}
+	  <h4> {% trans "You will only get one attempt at this quiz" %}. </h4>
+	{% endif %}
+
+	<p> {{ quiz.description }} </p>
+	<div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>Test</h4>
+              
+              <p>click the the link below to start the tests or revision exercise that you have selected </p>
+                  <p>
+	  				<a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+							{% trans "Start quiz" %}
+	 				 </a>
+			</p>
+      		</div>
+   		 </div>
+    </div>
+	
+
+{% endblock %}

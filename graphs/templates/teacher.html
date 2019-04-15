@@ -1,0 +1,81 @@
+{% extends 'base1.html' %}
+
+{% block title %} Quiz Home Page {% endblock %}
+
+{% block links %}
+
+	<li>
+		<a href="/quiz/category/">
+			quiz-Category
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/progress/">
+			quiz-Progress
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/marking/">
+			quiz-Marking
+		</a>
+	</li>
+
+{% endblock %}
+
+{% block hi %}
+<!-- welcome text -->
+Quiz App <br />
+<small> Control Center </small>
+{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+	<h3>Welcome  Teacher <span style="color:#008080;">{{request.user }}</span>  to Elearning Center </h3>
+       <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>Marking</h4>
+              <p> This feature allows the tutor to mark questions which need explanatory answers.</p>
+              <p>click the the link below to mark </p>
+                  <h6><span style="color:yellow;"><a href="/quiz/marking/">
+                Marking
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>
+        
+          <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>UPLOAD STUDY MATERIALS </h4>
+              <p> This feature allows the teacher to upload relevant study materials. The teacher should apload materials which are very specific in terms of class and subject</p>
+             
+                  <h6><span style="color:yellow;"><a href="/graphs/Erupload/">
+                    
+                  Upload Elearning Resources
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>
+           
+           <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>SEE ANAYSED DATA OF TEST </h4>
+              <p> This feature allows the teacher to see analysed data of tests and know problematic areas i n particular test.</p>
+             
+                  <h6><span style="color:yellow;"><a href="/users/analysisfeed/">
+                    
+                  View Exam Analysis
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>  		
+            
+        
+            
+          
+      
+
+
+{% endblock %}

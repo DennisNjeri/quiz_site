@@ -1,0 +1,96 @@
+{% extends  'users_template.html' %}
+
+{% block pagetitle %} App[users] Index Page {% endblock %}
+
+{% block links %}
+	<li>
+		<a href="/admin/">
+			Admin Terminal
+		</a>
+	</li>
+	<li>
+		<a href="/users/">
+			Refresh Home[users] Page
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/">
+			Go to App[ quiz ]-Home
+		</a>
+	</li>
+
+	{% if request.user.is_authenticated %}
+	<li>
+		<a href="{% url 'users_logout_link' %}">
+			Logout
+		</a>
+	</li>
+	{% else %}
+	<li>
+		<a href="{% url 'users_login_link' %}">
+			Login
+		</a>
+	</li>
+	{% endif %}
+
+	<li>
+		<a href="{% url 'users_register_link' %}">
+			Register
+		</a>
+	</li>
+	<li>
+		<a href="{% url 'profile_details_link' %}">
+			Profile Details
+		</a>
+	</li>
+
+{% endblock %}
+
+{% block hi %}
+App[users] Index Page
+{% endblock %}
+
+{% block content %}
+
+	<p>Current functionalities include:</p>
+	<ul style="list-style: lower-roman;" >
+		<li>Account Creation[ registration ]</li>
+		<li>Accessing Account[ login ]</li>
+		<li>
+			<a href="pdf/">
+				<span class="glyphicon glyphicon-link" ></span>
+				View File[ pdf ]
+			</a>
+			<ul>
+				<li>
+					Code: <br />
+					<code>
+						from django.http import FileResponse, Http404<br />
+						.<br />
+						.<br />
+						try:<br />
+						&nbsp;&nbsp;return FileResponse( open( '<em>path</em>', 'rb' ), content_type='application/pdf' )<br />
+						except FileNotFoundError:<br />
+						&nbsp;&nbsp;raise Http404<br />
+						.<br />
+						.<br />
+					</code>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<p>Value of 'request.path' : [ <i> {{ request.path }} </i> ]</p>
+
+	{% if just_logged_in %}
+		<p>
+			Proceed To
+			<a href="{% url 'quiz_index' %}">
+				<button class="btn btn-primary" >
+					[ Quiz ]
+				</button>
+			</a>
+		</p>
+	{% endif %}
+
+{% endblock %}

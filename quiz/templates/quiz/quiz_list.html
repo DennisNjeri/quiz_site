@@ -1,0 +1,70 @@
+{% extends 'base1.html' %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block hi %}
+	List of Quizzes<br />[ quiz_list.html ]
+{% endblock %}
+
+{% block links %}
+	<li>
+		<a href="/quiz/">
+			Refresh Home-App[ quiz ]
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/category/">
+			quiz-Category
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/progress/">
+			quiz-Progress
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/marking/">
+			quiz-Marking
+		</a>
+	</li>
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "List of Revision Exercises" %}</h2>
+    {% if quiz_list %}
+		<table class="table table-bordered table-striped">
+
+		  <thead>
+			<tr>
+			  <th>{% trans "Title" %}</th>
+			  <th>{% trans "Category" %}</th>
+			  <th>{% trans "Exam" %}</th>
+			  <th>{% trans "Single attempt" %}</th>
+			  <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
+        {% for quiz in quiz_list %}
+
+  			<tr>
+			  <td>{{ quiz.title }}</td>
+			  <td>{{ quiz.category }}</td>
+			  <td>{{ quiz.exam_paper }}</td>
+			  <td>{{ quiz.single_attempt }}</td>
+			  <td>
+				<a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				  {% trans "View details" %}
+				</a>
+			</tr>
+
+        {% endfor %}
+		  </tbody>
+
+		</table>
+
+	{% else %}
+        <p>{% trans "There are no available quizzes" %}.</p>
+    {% endif %}
+{% endblock %}

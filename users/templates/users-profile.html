@@ -1,0 +1,90 @@
+{% extends 'base1.html' %}
+
+{% block pagetitle %} Profile Page {% endblock %}
+
+{% block stylesheets %}
+	  {% load staticfiles %}
+	<link rel="stylesheet" type="text/css"
+	href="{% static 'users/css/form-register.css' %}" />
+{% endblock %}
+
+{% block links %}
+	<li>
+		<a href="/users/">
+			Users
+		</a>
+	</li>
+	<li>
+		<a href="{% url 'users_login_link' %}">
+			Login
+		</a>
+	</li>
+{% endblock %}
+
+{% block hi %}
+ The Register Center
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col s8">
+			<h5>Your Profile Details</h5>
+		</div>
+		<div class="col s4">
+			<h5><a href="../../graphs/">View your Progress</a></h5>
+		</div>
+	</div>
+
+	
+
+	<table class="table table-hover table-striped" >
+
+		<tbody>
+
+			<tr>
+				<td>First Name</td>
+				<td> {{ request.user.first_name }} </td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td> {{ request.user.last_name }} </td>
+			</tr>
+			<tr>
+				<td>Username</td>
+				<td> {{ request.user.username }} </td>
+			</tr>
+			<tr>
+				<td>Profile Picture</td>
+				<td>
+					<img src="{{ request.user.user.pic.url }}" alt="Profile Image"
+					width="200px" height="200px"
+					style="border-radius: 50%;" />
+				</td>
+			</tr>
+			<tr>
+				<td>Email Address</td>
+				<td> {{ request.user.email }} </td>
+			</tr>
+			<tr>
+				<td>Class</td>
+				<td> {{ request.user.user.Class }} </td>
+			</tr>
+			<tr>
+				<td>Biography</td>
+				<td> {{ request.user.user.bio }} </td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: right;" >
+					<a href="../updateprofile">
+						<button class="btn btn-xs btn-info" >
+							Update Info
+						</button>
+					</a>
+				</td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+{% endblock %}

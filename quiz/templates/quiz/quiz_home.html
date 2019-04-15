@@ -1,0 +1,82 @@
+{% extends 'base1.html' %}
+
+{% block title %} Quiz Home Page {% endblock %}
+
+{% block links %}
+
+	<li>
+		<a href="/quiz/category/">
+			quiz-Category
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/progress/">
+			quiz-Progress
+		</a>
+	</li>
+	<li>
+		<a href="/quiz/marking/">
+			quiz-Marking
+		</a>
+	</li>
+
+{% endblock %}
+
+{% block hi %}
+<!-- welcome text -->
+Quiz App <br />
+<small> Control Center </small>
+{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+	<h3>Welcome <span style="color:#008080;">{{request.user }}</span>  to Elearning Center Services</h3>
+        <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>Revision Exercises</h4>
+              <p> This feature lists down all the revision exercises and exams that you are eligible to take. Ensure you give your best to every test to undertake</p>
+              <p>click the the link below to view the tests and revision exercises </p>
+                  <h6><span style="color:yellow;"><a href="{% url 'quiz_index' %}">
+                  View the tests
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>
+           <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>Progression</h4>
+              <p> This feature allows you to view your progrss and know how you have been performing in the various tests.</p>
+              <p>click the the link below to view your progress </p>
+                  <h6><span style="color:yellow;"><a href="/quiz/progress/">
+                Progress
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>
+          <div class="row" >
+           <div class="col s12" >
+            <div class=" hoverable " style="background-color: #FFF8DC; height:165px;">
+              <h4>Revision Exercises Categories</h4>
+              <p> This feature lists down all the revision exercises  categories. Revision exercises are categorised by class and by the various subjects</p>
+              <p>click the the link below to view the tests and revision exercises categories </p>
+                  <h6><span style="color:yellow;"><a href="/quiz/category/">
+                    
+                  View the Categories
+                </a></span> </h6>
+            </div>
+            </div>
+          </div>
+          
+           
+        
+            		
+            
+        
+            
+          
+      
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+		#print(Counter(elem[1] for elem in ques))
+		#print(list(Counter(elem[1] for elem in ques)))
+		qtion=list(Counter(elem[1] for elem in ques))
+		qtion =''.join(qtion)
+		qsd_1=qtion.split(",")
+		qsd_1 = list(filter(None, qsd_1))
+		#print("qsd_1")
+		#print(qsd_1)
+		#print("tena")
+		#print("list")
+		#print(list(elem[1] for elem in ques))
+		pizzo = list(elem[1] for elem in ques)
+		pizzo = ''.join(pizzo)
+		octo = pizzo.split(",")
+		octo = list(filter(None, octo))
+		#print("octo")
+		#print(octo)
+		deni = [(x,) for x in octo]
+		#print(deni)
+		
+		#print("counter deni")
+		IncOccurrence = Counter(elem[0] for elem in deni)
+		#print( IncOccurrence )
+
+		#print("list ya deni")
+		#print(list(Counter(elem[0] for elem in deni)))
+		gdata = list(Counter(elem[0] for elem in deni))
+		swali = []
+		for g in gdata:
+			data = Question.objects.filter(id=g).values_list('content','quiz')
+			#print(g)
+			#print(data[0])
+			swali.append(data[0])
+		#print(swali)
+		for s in swali:
+			if s[1] == 1:
+				#print(s[0])
+
+		tests = []
+		for que in ques:
+			tao = Quiz.objects.filter(id=que[0]).values_list('title',flat=True)
+			tests.append(tao[0])
+		tests = list(set(tests))
+		#print(tests)
+		

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elearning Center</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static 'users/css/materialize.css' %}">
+  <!--<link rel="stylesheet" href="{% static 'users/css/materialize.min.css' %}" />-->
+  <link rel="stylesheet" href="{% static 'users/css/style.css' %}" />
+  <script src="{% static 'users/js/materialize.min.js' %}"></script>
+</head>
+<body class="white">
+  <div class="navbar-fixed" >
+  <nav class="hoverable white red-text" >
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo black-text">PRIMARY SCHOOL</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down ">
+          <li><a class="black-text" href="/">HOME</a></li>
+           <li><a class="black-text" href="/quiz">ELEARNING CENTER</a></li>
+            {% if request.user.is_staff %}
+            <li><a class="black-text" href="/graphs/Teacherprofile">TEACHER</a></li>
+           {% endif %}
+           {%  if request.user.is_authenticated %}
+      <li><a class="black-text" href="/graphs/Ematerials">E-RESOURCES</a></li>
+      <li><a class="black-text" href="/users/profile_details">PROFILE</a></li>
+      <li><a class="black-text" href="/users/logout">LOGOUT</a></li>
+      {% endif %}
+          {%  if request.user.is_authenticated is False %}
+
+      <li><a class="black-text" href="/users/register">SIGN UP</a></li>
+      <li><a class="black-text" href="/users/login">SIGN IN</a></li>
+      {% endif %}
+        </ul>
+      </div>
+  </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="/">HOME</a></li>
+      <li><a class="black-text" href="/quiz">ELEARNING CENTER</a></li>
+      {%  if request.user.is_authenticated %}
+
+      <li><a class="black-text" href="/users/profile">PROFILE</a></li>
+      <li><a class="black-text" href="/users/logout">LOGOUT</a></li>
+      {% endif %}
+       {%  if request.user.is_authenticated is False %}
+
+      <li><a class="black-text" href="/users/register">SIGN UP</a></li>
+      <li><a class="black-text" href="/users/login">SIGN IN</a></li>
+      {% endif %}
+    </ul>
+    </div>
+
+
+ <div class="main">
+  <div class="row">
+    <div class="col s6 push-s3 hoverable">
+     
+      {% block content %}
+
+    {% endblock %}
+    </div>
+  </div>
+</div>
+    
+
+
+
+  
+
+  <footer class="page-footer grey">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">SYSTEM DESCRIPTION</h5>
+                <p class="grey-text text-lighten-4">Enables students to do revision exercises online and keeps track of their past performance</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text"> Other Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="users/register">SIGN UP</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/users/login">SIGN IN</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/quiz">ELEARNING CENTER</a></li>
+                  <!--<li><a class="grey-text text-lighten-3" href="#!">PROFILE 4</a></li>-->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2018 Primary School Learning Management System
+            <a class="grey-text text-lighten-4 right" href="#!">POWERED BY NJOGU</a>
+            </div>
+          </div>
+        </footer>
+   <script src="{% static 'users/js/jquery-3.3.1.min.js' %}"></script>
+   <script src="{% static 'users/js/materialize.min.js' %}"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, options);
+  });
+
+  // Or with jQuery
+
+ $(document).ready(function(){
+   $('.sidenav').sidenav();
+ });
+
+
+  </script>
+</body>
+</html>

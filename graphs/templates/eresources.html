@@ -1,0 +1,56 @@
+{% extends 'base1.html' %}
+
+{% block title %} Quiz Home Page {% endblock %}
+
+{% block links %}
+
+	
+{% endblock %}
+
+{% block hi %}
+<!-- welcome text -->
+
+{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+	<h3>Welcome <span style="color:#008080;">{{request.user }}</span> To use Elearning resources</h3>
+         <div class="row">
+   
+      
+     {% for resource in resources %}
+          <div class="col s4" >
+          <div class="card small hoverable">
+                  <div class="card-image waves-effect waves-block waves-light">
+                     <img class="activator" src="{% static 'users/images/resource.jpg' %}">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4" style="font-size: 14px">Class {{resource.Class}} {{resource.subject}}<i class="material-icons right">more</i></span>
+                  <p><a href="{{ resource.pdf.url }}">Read the book</a></p>
+               </div>
+                  <div class="card-reveal">
+                   <span class="card-title grey-text text-darken-4">ELEARNING CENTER<i class="material-icons right">close</i></span>
+                 <p>This book is a comprehensive guide for pupils in class {{resource.Class}} for this particular {{resource.subject}} subject .</p>
+          </div>
+               </div>
+        </div>
+    
+         
+     {% endfor %}
+
+      <div class="container">
+      <canvas id="myChart"></canvas>
+       </div>
+    
+  </div>
+    
+ 
+            		
+            
+        
+            
+          
+      
+
+
+{% endblock %}

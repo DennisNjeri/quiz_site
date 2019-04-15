@@ -1,0 +1,103 @@
+{% extends "base1.html" %}
+{% load i18n%}
+
+{% load quiz_tags %}
+
+{% block title %} {{ quiz.title }} {% endblock %}
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+
+{% block hi %}
+	[ question.html ]
+{% endblock %}
+
+{% block content %}
+
+{% if previous.answers %}
+
+  <p class="muted"><small>{% trans "The previous question" %}:</small></p>
+  <p>{{ previous.previous_question }}</p>
+
+  {% if previous.previous_outcome %}
+	<div class="alert alert-success">
+  {% else %}
+	<div class="alert alert-warning">
+  {% endif %}
+  	  <p><small>
+		{% trans "Your answer was" %} </small>
+		<strong>
+		  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+		</strong>
+	  </p>
+
+	</div>
+
+	{% include 'correct_answer.html' %}
+
+	<p><strong>{% trans "Explanation" %}:</strong></p>
+	<div class="well " style="background-color: #fcf8e3;">
+	  <p>{{ previous.previous_question.explanation }}</p>
+	</div>
+
+	<hr>
+
+{% endif %}
+
+<br />
+
+{% if question %}
+
+{% if progress %}
+<div style="float: right;">
+{% trans "Question" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
+</div>
+{% endif %}
+
+<p>
+  <small class="muted">{% trans "Question category" %}:</small>
+  <strong>{{ question.category }}</strong>
+</p>
+
+<p class="lead">{{ question.content }}</p>
+
+{% if question.figure %}
+    <p>
+    	<img src="{{ question.figure.url }}" alt="{{ question.content }}"
+	    width="240px" height="240px" style="border-radius: 50%;" />
+    </p>
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+  <input type=hidden name="question_id" value="{{ question.id }}">
+
+  <ul class="list-group input-field">
+
+	{% for answer in form.answers %}
+	  <li class="list-group-item ">
+	   	 {{ answer }}
+	  </li>
+	{% endfor %}
+
+  </ul>
+  
+  <div class="row">
+  	<div class="col s3 ">
+	 <input type="submit" value={% trans "Next" %} class="btn btn-large btn-block btn-warning" />
+	</div>
+	<div class="col s3 offset-s5">
+		<input type=button value="Previous" onClick="javascript:history.go(-1);" class="btn btn-large btn-block btn-warning">
+	</div>
+</div>	
+</form>
+
+{% endif %}
+
+<hr>
+<style type="text/css">
+	input {
+     color:black;
+     opacity:1;
+     font-size: 18px;
+}
+</style>
+
+{% endblock %}
